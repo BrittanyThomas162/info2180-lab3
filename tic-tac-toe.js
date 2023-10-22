@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     squares.forEach(function(elem,index) {
 
         elem.setAttribute('class', 'square');
+
         elem.addEventListener("click", function () 
         {
             if (elem.textContent=="") {
@@ -27,9 +28,20 @@ document.addEventListener("DOMContentLoaded", function () {
             }
     
         });
+
+
+        elem.addEventListener("mouseover", function(e) {
+            e.target.classList.add("hover");
+        });
+    
+        elem.addEventListener("mouseout", function(e) {
+            e.target.classList.remove("hover");
+          });
+
+
+
     });
   
-
 
 
   });
