@@ -1,10 +1,11 @@
-
 document.addEventListener("DOMContentLoaded", function () {
 
     var squares = document.querySelectorAll("#board div");
     var isPlayerX = true;
     var gameState = ["0","1","2","3","4","5","6","7","8"];
-
+    var status = document.getElementById("status");
+    var newGameBtn = document.querySelector(".btn");
+    
     squares.forEach(function(elem,index) {
 
         elem.setAttribute('class', 'square');
@@ -28,10 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 isPlayerX = !isPlayerX;
 
-                var winner = checkForWinner(gameState);
+                let winner = checkForWinner(gameState);
                 console.log(winner)
                 if (winner!=null) {
-                    var status = document.getElementById("status");
                     status.textContent = `Congratulations! ${winner} is the Winner!`;
                     status.classList.add("you-won");
                 }
@@ -66,9 +66,29 @@ document.addEventListener("DOMContentLoaded", function () {
     
             return null;
         }
-        
 
     });
-  
+
+    newGameBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        squares.forEach(function(square) {
+            square.textContent = "";
+            square.className = "square";
+            gameState = ["0","1","2","3","4","5","6","7","8"];
+            status.textContent = "Move your mouse over a square and click to play an X or an O."
+            if (status.classList.contains("you-won")) {
+                status.classList.remove("you-won");
+            }
+            
+        });
+
+    });
+
+
+
   });
+
+
+
+  
 
