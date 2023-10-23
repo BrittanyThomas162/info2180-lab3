@@ -74,16 +74,15 @@ document.addEventListener("DOMContentLoaded", function () {
         squares.forEach(function(square) {
             square.textContent = "";
             square.className = "square";
-            gameState = ["0","1","2","3","4","5","6","7","8"];
-            status.textContent = "Move your mouse over a square and click to play an X or an O."
-            if (status.classList.contains("you-won")) {
-                status.classList.remove("you-won");
-            }
-            
         });
-
+        
+        gameState = ["0","1","2","3","4","5","6","7","8"];
+        status.textContent = "Move your mouse over a square and click to play an X or an O."
+        if (status.classList.contains("you-won")) {
+            status.classList.remove("you-won");
+        }
+            
     });
-
 
 
   });
