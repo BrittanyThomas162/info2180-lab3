@@ -11,20 +11,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         elem.addEventListener("click", function () 
         {
-            if (elem.textContent=="") {
+            if (elem.textContent == "") {
+
                 if (isPlayerX) {
                     elem.textContent = "X";
                     elem.classList.add("X");
                     gameState[index]="X";
                     console.log(gameState)
+
                 } else {
                     elem.textContent = "O";
                     elem.classList.add("O");
                     gameState[index]="O";
                     console.log(gameState)
                 }
-    
+
                 isPlayerX = !isPlayerX;
+
+                var winner = checkForWinner(gameState);
+                console.log(winner)
+                if (winner!=null) {
+                    var status = document.getElementById("status");
+                    status.textContent = `Congratulations! ${winner} is the Winner!`;
+                    status.classList.add("you-won");
+                }
+              
             }
     
         });
@@ -39,10 +50,25 @@ document.addEventListener("DOMContentLoaded", function () {
           });
 
 
+        function checkForWinner(gameState) {
+            const winningCombos = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+                [0, 4, 8], [2, 4, 6] // Diagonals
+            ];
+            
+            for (let i = 0; i < winningCombos.length; i++) {
+                const [a, b, c] = winningCombos[i];
+                if (gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                    return gameState[a];
+                }
+            }
+    
+            return null;
+        }
+        
 
     });
   
-
-
   });
 
